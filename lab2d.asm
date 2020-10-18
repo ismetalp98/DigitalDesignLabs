@@ -51,8 +51,21 @@ main:
 
 	jal printarray
 
+	#ask user
+	li $v0,4
+	la $a0,askuser
+	syscall
+		
+	#get the answer
+	li $v0,5
+	syscall
+	
+	#restart	
+	beq $v0,1,main
+
 	li $v0,10
 	syscall
+	
 
 createPopulateArray:
 	
@@ -247,6 +260,7 @@ compressArray:
 
 
 .data
+	askuser: .asciiz "\nDo you want to restart program? (if yes enter = 1)(else enter = 0): " 
     	sizeprompt: .asciiz "\nEnter Array Size: "
     	deltelower: .asciiz "\Enter the beginig of interval: "
     	delteupper: .asciiz "\Enter the end of interval: "

@@ -19,9 +19,9 @@ main:
 	li $v0,5
 	syscall
 	
-	move $a0,$a1
-	move $a1,$a2
-	move $a2,$v0
+	move $a0,$a1 #array to a0
+	move $a1,$a2 #size to a1
+	move $a2,$v0 #location to a2
 	
 	jal deleteNumber
 	
@@ -29,9 +29,22 @@ main:
 	move $a2,$v1
 
 	jal printarray
+	
+	#ask user
+	li $v0,4
+	la $a0,askuser
+	syscall
+		
+	#get the answer
+	li $v0,5
+	syscall
+	
+	#restart	
+	beq $v0,1,main
 
 	li $v0,10
 	syscall
+
 
 createPopulateArray:
 	
@@ -90,7 +103,6 @@ createPopulateArray:
 		lw $s3,16($sp)
 		sw $a0,20($sp)
 		lw $a1,24($sp)
-		
 		addi $sp,$sp,24
 		
 		jr $ra
@@ -218,6 +230,7 @@ deleteNumber:
 
 
 .data
+	askuser: .asciiz "\nDo you want to restart program? (if yes enter = 1)(else enter = 0): " 
     	sizeprompt: .asciiz "\nEnter Array Size: "
     	deleteprompt: .asciiz "\Enter the location to delete: "
     	message: .asciiz "\nThe Number is: "
