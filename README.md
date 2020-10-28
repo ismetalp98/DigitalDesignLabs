@@ -1,2 +1,3 @@
 # DigitalDesignLabs
- assembly MIPS
+ * cs224 (Computer Organization) labs.
+ * MIPS assembly and systemverilog.
