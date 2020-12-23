@@ -1,10 +1,3 @@
-cs-224
-Section-03
-İsmet Alp Eren
-21703786
-Lab-05
-
-
 `timescale 1ns / 1ps
 
 
